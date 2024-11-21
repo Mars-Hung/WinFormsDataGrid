@@ -4,7 +4,6 @@ Here are some key features of the project:
 
 
 1. Automatic Retrieval of Taiwan Stock Market Data: The system automatically retrieves real-time stock information from the Taiwan stock market.
-
 自動取得台灣股票行情：能夠自動從台灣股票市場取得即時的股票資訊。
 
 2. DataGridView Charting Functionality: It supports charting or data visualization within a DataGridView.

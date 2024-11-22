@@ -21,31 +21,33 @@ namespace WinFormsDataGrid.Services
             {
                 var response = await client.GetStringAsync(url);
                 var json = JObject.Parse(response);
-                //var msgArray = json["msgArray"] as JArray;
-                var msgArray = json["msgArray"]?.ToString();
+                var msgArray = json["msgArray"] as JArray;
+                //var msgArray = json["msgArray"]?.ToString();
 
                 if (msgArray != null)
                 {
                     // 直接反序列化 msgArray 為 List<StockInfo>
-                    return JsonConvert.DeserializeObject<List<StockInfo>>(msgArray);
+                    //return JsonConvert.DeserializeObject<List<StockInfo>>(msgArray);
 
-                    //foreach (var item in msgArray)
-                    //{
-                    //    if (!string.IsNullOrEmpty(item["c"]?.ToString()))
-                    //    {
-                    //        var stockInfo = new StockInfo
-                    //        {
-                    //            StockId = item["c"]?.ToString(), // 股票代碼
-                    //            Name = item["n"]?.ToString(),   // 股票名稱
-                    //            CurrentPrice = decimal.TryParse(item["z"]?.ToString(), out var price) ? price : 0 // 當前價格
-                    //        };
-                    //        stockInfoList.Add(stockInfo);
-                    //    }
-                    //    else
-                    //    {
-                    //        continue;
-                    //    }
-                    //}
+                    foreach (var item in msgArray)
+                    {
+                        if (!string.IsNullOrEmpty(item["c"]?.ToString()))
+                        {
+                            var stockInfo = new StockInfo
+                            {
+                                StockId = item["c"]?.ToString(), // 股票代碼
+                                Name = item["n"]?.ToString(),   // 股票名稱
+                                CVD = decimal.TryParse(item["v"]?.ToString(), out var voprice) ? voprice : 0, // 累積成交量
+                                OpenPrice =  decimal.TryParse(item["o"]?.ToString(), out var oprice) ? oprice : 0, // 開盤
+                                CurrentPrice = decimal.TryParse(item["z"]?.ToString(), out var price) ? price : 0 // 當前價格
+                            };
+                            stockInfoList.Add(stockInfo);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
                 }
             }
 

@@ -79,7 +79,7 @@ namespace WinFormsDataGrid
             try
             {
                 TwseService twseService = new TwseService();
-                var stockData = await twseService.GetStockPricesAsync(new List<string>() { "tse_2330.tw", "tse_6669.tw", "tse_0050.tw", "tse_0056.tw", "tse_1301.tw" });
+                var stockData = await twseService.GetStockPricesAsync(new List<string>() { "tse_2330.tw", "tse_6669.tw", "tse_0050.tw", "tse_0056.tw", "tse_1301.tw", "tse_2690.tw", "tse_2317.tw", "tse_2892.tw", "tse_3008.tw", "tse_2603.tw", "tse_2603.tw", "tse_2454.tw", "tse_2303.tw" });
                 //gvMain.AutoGenerateColumns = false;
                 //gvMain.DataSource = stockData;
                 //lblTimerGvMainDesc.Text = "資料已更新";
